@@ -25,6 +25,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/dataAdmin', [AdminController::class, 'dataAdmin']);
     Route::get('/dataPengajar', [AdminController::class, 'dataPengajar']);
     Route::get('/dataJamaah', [AdminController::class, 'dataJamaah']);
+    Route::get('/tambahJadwal', [AdminController::class, 'tambahJadwal']);
 });
 
 //Route Untuk Semua Midleware Auth
