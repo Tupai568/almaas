@@ -5,6 +5,8 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,12 +31,11 @@ Route::middleware('admin')->group(function () {
 });
 
 //Route Untuk Semua Midleware Auth
+
 Route::middleware('auth')->group(function () {
     Route::get('/Dashboard', [UserController::class, 'index']);
     Route::post('/logout', [LoginController::class, 'logout']);
 });
-
-
 
 
 Route::get('/AlQuran', [ApiController::class, 'ApiData']);
@@ -46,3 +47,11 @@ Route::get('/', function () {
         "title" => "Belajar Mengaji Bersama Almaas"
     ]);
 })->name('login');
+
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+});
+
+
+Route::get('/email/verify/{id}/{hash}', [LoginController::class, 'verifyEmail']);
